@@ -15,3 +15,6 @@ int next_int_bound(unsigned long long *seed, int n);
 
 // returns pseudorandom long long given a seed
 long long next_long(unsigned long long *seed);
+
+// ores step 6, diamond index 9, emerald index 14
+void set_decorator_seed(u64 *seed, u64 world_seed, int x, int z, char index, char step);

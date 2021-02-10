@@ -15,17 +15,6 @@ ore arr[COUNT] = {{0,0,28},{0,1,26},{0,2,9},{0,3,5},{0,4,7},{0,5,16},
                   {4,0,17},{4,1,27},{4,2,18},{4,3,31},{4,4,8},{4,5,7},
                   {5,0,30},{5,1,26},{5,2,12},{5,3,25},{5,4,22},{5,5,18}};
 
-// ores step 6, diamond index 9, emerald index 14
-void set_decorator_seed(u64 *seed, u64 world_seed, int x, int z, char index, char step) {
-    set_seed(seed, world_seed);
-    u64 a = next_long(seed) | 1L;
-    u64 b = next_long(seed) | 1L;
-    // ab[0] = a; ab[1] = b;
-    u64 population_seed = (((u64) x)*a+((u64) z)*b)^world_seed;
-    u64 decorator_seed = population_seed + (index + (step*10000)); // bottom max 30 bits affects parity
-    set_seed(seed, decorator_seed);
-}
-
 
 // TODO: compare parity of lower n bits when calling next_int_bound for x,z before y
 void parity() {

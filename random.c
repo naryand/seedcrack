@@ -30,3 +30,13 @@ int next_int_bound(u64 *seed, int n) {
 
 // returns pseudorandom long long given a seed
 u64 next_long(u64 *seed) { return (((long long) next(seed, 32)) << 32) + (long long) next(seed, 32); }
+
+// ores step 6, diamond index 9, emerald index 14
+void set_decorator_seed(u64 *seed, u64 world_seed, int x, int z, char index, char step) {
+    set_seed(seed, world_seed);
+    u64 a = next_long(seed) | 1L;
+    u64 b = next_long(seed) | 1L;
+    u64 population_seed = (((u64) x)*a+((u64) z)*b)^world_seed;
+    u64 decorator_seed = population_seed + (index + (step*10000)); // bottom max 30 bits affects parity
+    set_seed(seed, decorator_seed);
+}

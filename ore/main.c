@@ -23,16 +23,6 @@ ore arr[COUNT] = {{0,0,5},{-4,-7,7},{-4,-8,4},
 typedef struct block { char id; int found; int lower30; } block;
 u64 world_seed;
 
-// ores step 6, diamond index 9, emerald index 14
-void set_decorator_seed(u64 *seed, u64 world_seed, int x, int z, char index, char step) {
-    set_seed(seed, world_seed);
-    u64 a = next_long(seed) | 1L;
-    u64 b = next_long(seed) | 1L;
-    // ab[0] = a; ab[1] = b;
-    u64 population_seed = (((u64) x)*a+((u64) z)*b)^world_seed;
-    u64 decorator_seed = population_seed + (index + (step*10000)); // bottom max 30 bits affects parity
-    set_seed(seed, decorator_seed);
-}
 
 // find bottom 30 bits using mod 2 on decorator
 void *thread30(void *arg) {
