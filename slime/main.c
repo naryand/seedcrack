@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include "../random.h"
-#define THREADS 8
+#define THREADS 24
 
 int main(int argc, char *argv[]) {
     // start and ends for top 30 bits
