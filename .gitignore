@@ -5,3 +5,4 @@ ore/profile.txt
 ore/gmon.out
 cuda/diamond
 cuda/main
+opencl/main
