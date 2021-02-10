@@ -3,3 +3,5 @@ ore/orecpp
 ore/ore
 ore/profile.txt
 ore/gmon.out
+cuda/diamond
+cuda/main
