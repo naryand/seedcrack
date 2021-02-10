@@ -57,16 +57,16 @@ __device__ void set_decorator_seed(u64 *seed, u64 world_seed, int x, int z, char
 // 82449439703029
 #define COUNT 4
 __constant__ ore arr[COUNT] = {{0,0, 1,2,4},
-{0,1, 8,6,15},
-{0,2, 2,2,6},
-{1,0, 1,8,5}};
+                               {0,1, 8,6,15},
+                               {0,2, 2,2,6},
+                               {1,0, 1,8,5}};
 
 __global__ void find(int grid, u64 *flag) {
     u64 seed[1]; 
     // calculate block
-    u64 i = ((u64) grid)*((u64) gridDim.x)+((u64) blockIdx.x);
+    u64 i = grid*gridDim.x+blockIdx.x;
     // calculate thread
-    i = i*((u64) blockDim.x)+((u64) threadIdx.x);
+    i = i*blockDim.x+threadIdx.x;
     // printf("%llu\n", i);
     for(char j = 0; j < COUNT; j++) { 
         set_decorator_seed(seed, i, arr[j].chunk_x << 4, arr[j].chunk_z << 4, 9, 6);
@@ -79,7 +79,7 @@ __global__ void find(int grid, u64 *flag) {
         if(y != arr[j].y) { return; }
     }
     printf("found seed %llu\n", i);
-    printf("%d %d %d %d %d %d\n", grid, gridDim.x, blockIdx.x, blockDim.x, threadIdx.x, i);
+    // printf("%d %d %d %d %d %d\n", grid, gridDim.x, blockIdx.x, blockDim.x, threadIdx.x, i);
 }
 
 #define GRIDS 1<<8
